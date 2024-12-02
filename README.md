@@ -16,25 +16,25 @@ bash create-vm.sh
 To transfer the Terraform file from local to VM:
 
 ```shell
-multipass transfer installDocker.sh awesome-vm:/home/ubuntu
+multipass transfer installDocker.sh super-cool-vm:/home/ubuntu
 ```
 
 #3
 To install Terraform from your local machine:
 ```shell
-multipass exec awesome-vm -- bash installDocker.sh
+multipass exec super-cool-vm -- bash installDocker.sh
 ```
 
 # 4
 To shell into your multipass VM: 
 
 ```shell
-multipass shell awesome-vm
+multipass shell super-cool-vm
 ```
 
 # 5
 To stop and delete the VM run this command:
 
 ```shell
-multipass delete awesome-vm --purge
+multipass delete super-cool-vm --purge
 ```
