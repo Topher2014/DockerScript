@@ -4,12 +4,46 @@
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do 
 sudo apt-get remove $pkg; done
 
+
 # 2. Add Docker's official GPG key:
+
+# Update the package repository
+echo 'Updating the apt package 🔄 '
 sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Install prerequisites if needed
+if dpkg -l | grep -q 'ca-certificates' && dpkg -l | grep -q 'curl'; then
+  echo 'The ca-certificates and curl packages are already installed. 👏'
+else
+  echo 'Installing ca-certificates and curl... ⏳'
+  sudo apt-get install ca-certificates curl
+fi
+
+# Check if the keyrings directory exists & if not, create it
+if [ -d /etc/apt/keyrings ]; then
+  echo 'The keyrings directory already exists. 👌'
+else
+  echo 'The keyrings directory does not exist. Creating it...✨'
+  sudo install -m 0755 -d /etc/apt/keyrings
+fi
+
+# Check if the Docker GPG key exists & if not, install it
+if [ -f /etc/apt/keyrings/docker.asc ]; then
+  echo 'The Docker GPG key already exists. 🔑'
+else
+  echo 'The Docker GPG key does not exist. Downloading it...⬇️'
+  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+fi
+
+# Check read permissions for the Docker GPG key
+if [ -r /etc/apt/keyrings/docker.asc ]; then
+  echo 'The Docker GPG key has the correct permissions. 👍'
+else
+  echo 'Setting correct permissions for the Docker GPG key... 🐳'
+  sudo chmod a+r /etc/apt/keyrings/docker.asc
+fi
+
+
 
 # Add the repository to Apt sources:
 echo \
