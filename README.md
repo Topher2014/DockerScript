@@ -16,14 +16,14 @@ bash create-vm.sh
 To transfer the Terraform file from local to VM:
 
 ```shell
-multipass transfer dockerInstall.sh super-cool-vm:/home/ubuntu
+multipass transfer installDocker.sh super-cool-vm:/home/ubuntu
 ```
 
 #3
 To install Terraform from your local machine:
 
 ```shell
-multipass exec super-cool-vm -- bash dockerInstall.sh
+multipass exec super-cool-vm -- bash installDocker.sh
 ```
 
 # 4
