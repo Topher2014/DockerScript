@@ -1,17 +1,5 @@
 #Set up Docker's apt repository in the following two steps:
 
-# 1. for Loop to uninstall conflicting dependencys
-dependencies=(docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc)
-for dep in "${dependencies[@]}"; do
-  if which $dep $>/dev/null; 
-  then
-    echo "$dep is installed. REmoving it..."
-    sudo apt-get remove -y $dep
-  else
-    echo "$dep is not installed. Skipping..."
-  fi 
-done
-
 # 2. Add Docker's official GPG key:
 sudo apt-get update
 sudo apt-get install ca-certificates curl
