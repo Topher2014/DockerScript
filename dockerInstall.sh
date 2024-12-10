@@ -25,9 +25,9 @@ echo \
 fi
 
 # Check cache for repo
-if (apt show "https://download.docker.com/linux/ubuntu")
+if (apt-cache search docker -ce | grep -q "docker-ce")
 then
-    echo "Repository already exists in the apt cache."
+    echo "Docker reepository already exists in the cache."
 else
     echo "Updating apt cache."
     sudo apt update
