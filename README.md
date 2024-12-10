@@ -21,6 +21,7 @@ multipass transfer installDocker.sh super-cool-vm:/home/ubuntu
 
 #3
 To install Terraform from your local machine:
+
 ```shell
 multipass exec super-cool-vm -- bash installDocker.sh
 ```
