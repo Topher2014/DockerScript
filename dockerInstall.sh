@@ -7,16 +7,28 @@ sudo apt-get remove $pkg; done
 
 # 2. Add Docker's official GPG key:
 
-# Update the package repository
-echo 'Updating the apt package 🔄 '
-sudo apt-get update
-
-# Install prerequisites if needed
-if dpkg -l | grep -q 'ca-certificates' && dpkg -l | grep -q 'curl'; then
-  echo 'The ca-certificates and curl packages are already installed. 👏'
+# See if apt-get exists. If so, update the repo.
+if command -v apt-get; then
+  echo 'Updating the apt package 🔄 '
+  sudo apt-get update
 else
-  echo 'Installing ca-certificates and curl... ⏳'
-  sudo apt-get install ca-certificates curl
+  echo 'apt-get not found ❌'
+fi
+
+# Check if ca-certificates exists, if not, install it.
+if apt-cache show 'ca-certificates'; then
+  echo 'The ca-certificates package is already installed. 👏'
+else
+  echo 'Installing ca-certificates... ⏳'
+  sudo apt-get install -y ca-certificates
+fi
+
+# Check if curl exists, if not, install it.
+if apt-cache show 'curl'; then
+  echo 'The curl package is already installed. 👏'
+else
+  echo 'Installing curl... ⏳'
+  sudo apt-get install -y curl
 fi
 
 # Check if the keyrings directory exists & if not, create it
