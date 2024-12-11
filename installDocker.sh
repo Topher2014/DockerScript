@@ -69,13 +69,5 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 docker-compose-plugin
 
-#Verify that the installation is successful by running the hello-world image:
-if command -v docker; then
-  echo "Running hello-world test... 👋🌍"
-  sudo docker run hello-world
-else
-  echo "Docker is not installed. ❌"
-fi
-
 #Check the version of docker
 docker --version
