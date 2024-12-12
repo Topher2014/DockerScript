@@ -1,9 +1,5 @@
 #Set up Docker's apt repository in the following two steps:
 
-# 1. Run the following command to uninstall all conflicting packages
-for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do 
-sudo apt-get remove $pkg; done
-
 # 2. Add Docker's official GPG key:
 
 # See if apt-get exists. If so, update the repo.
