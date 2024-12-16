@@ -66,8 +66,15 @@ https://download.docker.com/linux/ubuntu \
 sudo apt-get update
 
 #Install the latest version
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
-docker-compose-plugin
+
+# Check if the containerd.io package is installed
+if apt-cache show 'containerd.io'; then
+  echo "The containerd.io package is already installed. 👏"
+else
+  echo "Installing containerd.io... ⏳"
+  sudo apt-get install -y containerd.io
+  echo "containerd.io installation complete! ✅"
+fi
 
 #Verify that the installation is successful by running the hello-world image:
 sudo docker run hello-world
