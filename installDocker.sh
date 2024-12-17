@@ -77,4 +77,9 @@ docker-compose-plugin
 sudo docker run hello-world
 
 #Check the version of docker
-docker --version
+if command -v docker > /dev/null 2>&1; then
+  echo "Your Docker version is $(docker --version)"
+else
+  echo "Docker version could not be found."
+fi
+
