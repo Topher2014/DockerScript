@@ -73,6 +73,14 @@ fi
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 docker-compose-plugin
 
+# Install docker-ce-cli
+if (dpkg -l | grep -q docker-ce-cli)
+then 
+  echo "docker-ce-cli is already installed"
+else
+  echo "docker-ce-cli not installed, installing now"
+  sudo apt-get install -y docker-ce-cli
+fi
 #Verify that the installation is successful by running the hello-world image:
 sudo docker run hello-world
 
