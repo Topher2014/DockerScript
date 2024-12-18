@@ -67,9 +67,19 @@ sudo apt-get update
 
 #Install the latest version
 
+# Check if the containerd.io package is in the apt-cache
+if apt-cache show 'containerd.io'
+then
+  echo "The containerd.io package is in the apt-cache 👍"
+else
+  echo "containerd.io not found in the apt-cache. updating the package list 🔄"
+  sudo apt update
+fi
+
 # Check if the containerd.io package is installed
-if apt-cache show 'containerd.io'; then
-  echo "The containerd.io package is already installed. 👏"
+if dpkg -l | grep -q containerd.io
+then
+  echo "containerd.io package is already installed. 👏"
 else
   echo "Installing containerd.io... ⏳"
   sudo apt-get install -y containerd.io
