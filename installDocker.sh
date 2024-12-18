@@ -77,7 +77,7 @@ else
 fi
 
 # Check if the containerd.io package is installed
-if dpkg -l | grep -q containerd.io
+if dpkg -s containerd.io
 then
   echo "containerd.io package is already installed. 👏"
 else
