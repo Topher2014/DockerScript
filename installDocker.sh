@@ -81,6 +81,16 @@ else
   echo "docker-ce-cli not installed, installing now"
   sudo apt-get install -y docker-ce-cli
 fi
+
+# intsall docker compose
+if (dpkg -l | grep -q docker-compose-plugin) 
+then
+  echo "docker-compose-plugin is already installed"
+else
+  echo "docker-compose-plugin is not installed, installing it now"
+  sudo apt-get install -y docker-compose-plugin
+fi
+  
 #Verify that the installation is successful by running the hello-world image:
 sudo docker run hello-world
 
