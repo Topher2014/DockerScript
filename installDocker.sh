@@ -70,8 +70,25 @@ else
 fi
 
 #Install the latest version
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
-docker-compose-plugin
+
+# Check if the containerd.io package is in the apt-cache
+if apt-cache show 'containerd.io'
+then
+  echo "The containerd.io package is in the apt-cache 👍"
+else
+  echo "containerd.io not found in the apt-cache. updating the package list 🔄"
+  sudo apt update
+fi
+
+# Check if the containerd.io package is installed
+if dpkg -s containerd.io
+then
+  echo "containerd.io package is already installed. 👏"
+else
+  echo "Installing containerd.io... ⏳"
+  sudo apt-get install -y containerd.io
+  echo "containerd.io installation complete! ✅"
+fi
 
 # Install docker-ce-cli
 if (dpkg -l | grep -q docker-ce-cli)
