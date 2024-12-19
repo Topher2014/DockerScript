@@ -61,7 +61,7 @@ else
 fi
 
 # Check cache for repo
-if (apt-cache search docker -ce | grep -q "docker-ce")
+if (apt-cache search docker-ce | grep -q "docker-ce")
 then
     echo "Docker reepository already exists in the cache."
 else
