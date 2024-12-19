@@ -90,6 +90,15 @@ else
   echo "containerd.io installation complete! ✅"
 fi
 
+#install docker-ce
+if (dpkg -l | grep -q docker-ce)
+then 
+  echo "docker-ce is already installed"
+else 
+  echo "installing docker-ce"
+  sudo apt-get install -y docker-ce
+fi
+
 # Install docker-ce-cli
 if (dpkg -l | grep -q docker-ce-cli)
 then 
