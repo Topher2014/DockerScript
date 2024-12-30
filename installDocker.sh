@@ -99,7 +99,16 @@ else
   sudo apt-get install -y docker-ce-cli
 fi
 
-# intsall docker compose
+# install docker-buildx-plugin 
+if (dpkg -l | grep -q docker-buildx-plugin)
+then 
+  echo 'docker-buildx-plugin already installed'
+else 
+  echo 'installing dicker-buildx-plugin'
+  sudo apt-get install -y docker-buildx-plugin
+fi
+
+# install docker compose
 if (dpkg -l | grep -q docker-compose-plugin) 
 then
   echo "docker-compose-plugin is already installed"
