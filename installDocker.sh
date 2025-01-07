@@ -163,11 +163,11 @@ else
 fi
 
 # Verify Docker can be run without sudo
-if docker run hello-world > /dev/null 2>&1
+if docker ps 
 then
   echo "Docker can be run without sudo. Verification successful!"
 else
-  echo "Verification failed. Please check the setup."
+  echo "You still need to prepend your Docker commands with SUDO, try again."
 fi
 
 # Fix potential permission issues with the ~/.docker directory
