@@ -136,3 +136,47 @@ else
   echo "Docker version could not be found."
 fi
 
+# Create docker group if it doesn't exist
+if getent group docker > /dev/null 2>&1
+then 
+  echo 'the docker group already exists'
+else
+  echo 'creating the docker group...'
+  sudo groupadd docker 
+fi
+
+# add the current user to the docker group
+if id -nG "$USER" | grep -qw docker
+then 
+  echo " The user is $USER is already docker group"
+  sudo usermod -aG docker "$USER"
+  echo "User $USER has been added to the docker group."
+fi
+
+# Log out and back in to refresh group membership
+if command -v newgrp > /dev/null 2>&1
+then
+  echo "Refreshing group membership using newgrp..."
+  newgrp docker
+else
+  echo "Please log out and log back in for group changes to take effect."
+fi
+
+# Verify Docker can be run without sudo
+if docker ps 
+then
+  echo "Docker can be run without sudo. Verification successful!"
+else
+  echo "You still need to prepend your Docker commands with SUDO, try again."
+fi
+
+# Fix potential permission issues with the ~/.docker directory
+if [ -d "$HOME/.docker" ]
+then
+  echo "Fixing permissions for the ~/.docker directory..."
+  sudo chown "$USER":"$USER" "$HOME/.docker" -R
+  sudo chmod g+rwx "$HOME/.docker" -R
+else
+  echo "The ~/.docker directory does not exist. No permission fixes required."
+fi
+
