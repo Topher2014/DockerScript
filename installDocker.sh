@@ -136,3 +136,11 @@ else
   echo "Docker version could not be found."
 fi
 
+# Apply the group change in the current terminal session
+if groups | grep docker
+then
+echo 'User is already in the docker group'
+else
+echo 'Adding to the group'
+newgrp docker
+fi
