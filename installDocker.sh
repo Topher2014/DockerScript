@@ -132,9 +132,6 @@ else
   sudo apt-get install -y docker-compose-plugin
 fi
 
-# Post installation
-sudo usermod -aG docker ubuntu
-
 # Apply the group change in the current terminal session
 if grep docker /etc/group
 then
@@ -142,4 +139,13 @@ echo 'The docker group already exists'
 else
 echo 'Creating the 'docker' group'
 sudo groupadd docker
+fi
+
+# Check if the user "ubuntu" is in the "docker" group
+if grep -q "docker" /etc/group && grep -q "ubuntu" /etc/group
+then
+  echo 'User "ubuntu" is already in the docker group'
+else
+  echo 'Adding user "ubuntu" to the docker group'
+  sudo usermod -aG docker ubuntu
 fi
