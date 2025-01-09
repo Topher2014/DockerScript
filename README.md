@@ -19,7 +19,7 @@ To transfer the Docker file from local to VM:
 multipass transfer installDocker.sh super-cool-vm:/home/ubuntu
 ```
 
-#3
+# 3
 To install Docker from your local machine:
 
 ```shell

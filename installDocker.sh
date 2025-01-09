@@ -1,9 +1,10 @@
-#Set up Docker's apt repository in the following two steps:
+# Set up Docker's apt repository in the following two steps:
 
 # 2. Add Docker's official GPG key:
 
 # See if apt-get exists. If so, update the repo.
-if command -v apt-get; then
+if command -v apt-get
+then
   echo 'Updating the apt package 🔄 '
   sudo apt-get update
 else
@@ -11,7 +12,8 @@ else
 fi
 
 # Check if ca-certificates exists, if not, install it.
-if apt-cache show 'ca-certificates'; then
+if apt-cache show 'ca-certificates'
+then
   echo 'The ca-certificates package is already installed. 👏'
 else
   echo 'Installing ca-certificates... ⏳'
@@ -19,7 +21,8 @@ else
 fi
 
 # Check if curl exists, if not, install it.
-if apt-cache show 'curl'; then
+if apt-cache show 'curl'
+then
   echo 'The curl package is already installed. 👏'
 else
   echo 'Installing curl... ⏳'
@@ -27,7 +30,8 @@ else
 fi
 
 # Check if the keyrings directory exists & if not, create it
-if [ -d /etc/apt/keyrings ]; then
+if [ -d /etc/apt/keyrings ]
+then
   echo 'The keyrings directory already exists. 👌'
 else
   echo 'The keyrings directory does not exist. Creating it...✨'
@@ -35,7 +39,8 @@ else
 fi
 
 # Check if the Docker GPG key exists & if not, install it
-if [ -f /etc/apt/keyrings/docker.asc ]; then
+if [ -f /etc/apt/keyrings/docker.asc ]
+then
   echo 'The Docker GPG key already exists. 🔑'
 else
   echo 'The Docker GPG key does not exist. Downloading it...⬇️'
@@ -43,7 +48,8 @@ else
 fi
 
 # Check read permissions for the Docker GPG key
-if [ -r /etc/apt/keyrings/docker.asc ]; then
+if [ -r /etc/apt/keyrings/docker.asc ]
+then
   echo 'The Docker GPG key has the correct permissions. 👍'
 else
   echo 'Setting correct permissions for the Docker GPG key... 🐳'
@@ -63,20 +69,20 @@ fi
 # Check cache for repo
 if (apt-cache search docker-ce | grep -q "docker-ce")
 then
-    echo "Docker reepository already exists in the cache."
+    echo "Docker repository already exists in the cache."
 else
     echo "Updating apt cache."
     sudo apt update
 fi
 
-#Install the latest version
+# Install the latest version
 
 # Check if the containerd.io package is in the apt-cache
 if apt-cache show 'containerd.io'
 then
   echo "The containerd.io package is in the apt-cache 👍"
 else
-  echo "containerd.io not found in the apt-cache. updating the package list 🔄"
+  echo "containerd.io not found in the apt-cache. Updating the package list 🔄"
   sudo apt update
 fi
 
@@ -90,53 +96,47 @@ else
   echo "containerd.io installation complete! ✅"
 fi
 
-#install docker-ce
+# Install docker-ce
 if (dpkg -l | grep -q docker-ce)
-then 
+then
   echo "docker-ce is already installed"
-else 
-  echo "installing docker-ce"
+else
+  echo "Installing docker-ce"
   sudo apt-get install -y docker-ce
 fi
 
 # Install docker-ce-cli
 if (dpkg -l | grep -q docker-ce-cli)
-then 
+then
   echo "docker-ce-cli is already installed"
 else
   echo "docker-ce-cli not installed, installing now"
   sudo apt-get install -y docker-ce-cli
 fi
 
-# install docker-buildx-plugin 
+# Install docker-buildx-plugin
 if (dpkg -l | grep -q docker-buildx-plugin)
-then 
+then
   echo 'docker-buildx-plugin already installed'
-else 
-  echo 'installing dicker-buildx-plugin'
+else
+  echo 'Installing docker-buildx-plugin'
   sudo apt-get install -y docker-buildx-plugin
 fi
 
-# install docker compose
-if (dpkg -l | grep -q docker-compose-plugin) 
+# Install docker compose
+if (dpkg -l | grep -q docker-compose-plugin)
 then
   echo "docker-compose-plugin is already installed"
 else
   echo "docker-compose-plugin is not installed, installing it now"
   sudo apt-get install -y docker-compose-plugin
 fi
-  
-#Verify that the installation is successful by running the hello-world image:
-sudo docker run hello-world
 
-#Check the version of docker
-if command -v docker > /dev/null 2>&1; then
-  echo "Your Docker version is $(docker --version)"
-else
-  echo "Docker version could not be found."
-fi
+# Post installation
+sudo usermod -aG docker ubuntu
 
 # Apply the group change in the current terminal session
+<<<<<<< HEAD
 if grep docker /etc/group
 then
 echo 'The docker group already exists'
@@ -144,3 +144,6 @@ else
 echo 'Creating the 'docker' group'
 sudo groupadd docker
 fi
+=======
+newgrp docker 
+>>>>>>> ef9c96610a0d32bac53475e2f16669b4eeefadd2
