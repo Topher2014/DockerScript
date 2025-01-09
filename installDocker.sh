@@ -136,7 +136,6 @@ fi
 sudo usermod -aG docker ubuntu
 
 # Apply the group change in the current terminal session
-<<<<<<< HEAD
 if grep docker /etc/group
 then
 echo 'The docker group already exists'
@@ -144,6 +143,3 @@ else
 echo 'Creating the 'docker' group'
 sudo groupadd docker
 fi
-=======
-newgrp docker 
->>>>>>> ef9c96610a0d32bac53475e2f16669b4eeefadd2
