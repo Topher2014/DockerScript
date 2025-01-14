@@ -2,15 +2,6 @@
 
 # 2. Add Docker's official GPG key:
 
-# See if apt-get exists. If so, update the repo.
-if command -v apt-get
-then
-  echo 'Updating the apt package 🔄 '
-  sudo apt-get update
-else
-  echo 'apt-get not found ❌'
-fi
-
 # Check if ca-certificates exists, if not, install it.
 if apt-cache show 'ca-certificates'
 then
