@@ -140,3 +140,12 @@ else
   echo 'Adding user "ubuntu" to the docker group'
   sudo usermod -aG docker ubuntu
 fi
+
+# Confirmation for the install
+if (which docker)
+then 
+  echo "congrats you have docker installed"
+  docker -v
+else
+  echo 'Oops, something is fucked up!'
+fi
