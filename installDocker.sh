@@ -88,7 +88,7 @@ else
 fi
 
 # Install docker-ce
-if (dpkg -l | grep -q docker-ce)
+if dpkg -s docker-ce
 then
   echo "docker-ce is already installed"
 else
@@ -97,7 +97,7 @@ else
 fi
 
 # Install docker-ce-cli
-if (dpkg -l | grep -q docker-ce-cli)
+if dpkg -s docker-ce-cli
 then
   echo "docker-ce-cli is already installed"
 else
@@ -106,7 +106,7 @@ else
 fi
 
 # Install docker-buildx-plugin
-if (dpkg -l | grep -q docker-buildx-plugin)
+if dpkg -s docker-buildx-plugin
 then
   echo 'docker-buildx-plugin already installed'
 else
@@ -115,7 +115,7 @@ else
 fi
 
 # Install docker compose
-if (dpkg -l | grep -q docker-compose-plugin)
+if dpkg -s docker-compose-plugin
 then
   echo "docker-compose-plugin is already installed"
 else
