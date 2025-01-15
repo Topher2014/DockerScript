@@ -6,41 +6,48 @@
 # PROJECT COMMANDS:
 
 # STEP ONE
-To create the VM:
+Create the VM:
 
 ```shell
 bash create-vm.sh
 ```
 
 
+
 # STEP TWO
-To transfer the Docker file from local to VM:
-
-There are two ways to do this...
-
-## 1 
-Transfer the file:
+Transfer the Docker file from local to VM:
 
 ```shell
 multipass transfer installDocker.sh super-cool-vm:/home/ubuntu
 ```
 
-Then manually shell into the VM:
+
+#STEP THREE
+Go into the VM:
 
 ```shell
 multipass shell super-cool-vm
 ```
 
-## 2
-Transfer the file and automatically shell into the VM:
+
+#STEP FOUR
+Run the installDocker script:
 
 ```shell
-multipass exec super-cool-vm -- bash installDocker.sh
+bash installDocker.sh
 ```
 
 
-# STEP 3
-To stop and delete the VM run this command:
+#STEP FIVE
+Exit the VM:
+
+```shell
+exit
+```
+
+
+# STEP SIX
+Delete the VM:
 
 ```shell
 multipass delete super-cool-vm --purge
