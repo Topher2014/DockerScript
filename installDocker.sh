@@ -47,23 +47,14 @@ else
   sudo chmod a+r /etc/apt/keyrings/docker.asc
 fi
 
-# Check if the repository file exists, add it to Apt sources if it does not
+# Check if the repository file exists, add it to Apt sources if it does not, then update the list of available packages and their versions from the newly added Docker repository 
 if (stat /etc/apt/sources.list.d/docker.list)
 then
    echo 'Repository already exists at /etc/apt/sources.list.d/docker.list'
 else
    echo 'Repository not found. Adding repository.'
    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-fi
-
-# Check cache for repo
-if (apt-cache search docker-ce | grep -q "docker-ce")
-then
-    echo "Docker repository already exists in the cache."
-else
-    echo "Updating apt cache."
-    sudo apt update
+   sudo tee /etc/apt/sources.list.d/docker.list && sudo apt update
 fi
 
 # Install the latest version
