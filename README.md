@@ -5,35 +5,49 @@
 
 # PROJECT COMMANDS:
 
-# 1
-To create the VM:
+## STEP ONE
+Create the VM:
 
 ```shell
 bash create-vm.sh
 ```
 
-# 2
-To transfer the Terraform file from local to VM:
+
+
+## STEP TWO
+Transfer the Docker file from your local machine to the VM:
 
 ```shell
 multipass transfer installDocker.sh super-cool-vm:/home/ubuntu
 ```
 
-#3
-To install Terraform from your local machine:
-```shell
-multipass exec super-cool-vm -- bash installDocker.sh
-```
 
-# 4
-To shell into your multipass VM: 
+## STEP THREE
+Go into the VM:
 
 ```shell
 multipass shell super-cool-vm
 ```
 
-# 5
-To stop and delete the VM run this command:
+
+## STEP FOUR
+Run the installDocker script:
+
+```shell
+bash installDocker.sh
+```
+
+
+## STEP FIVE
+Exit the VM:
+
+```shell
+exit
+```
+
+
+## STEP SIX
+Delete the VM:
 
 ```shell
 multipass delete super-cool-vm --purge
