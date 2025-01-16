@@ -117,10 +117,10 @@ fi
 # Apply the group change in the current terminal session
 if grep docker /etc/group
 then
-echo 'The docker group already exists'
+  echo 'The docker group already exists'
 else
-echo 'Creating the 'docker' group'
-sudo groupadd docker
+  echo 'Creating the 'docker' group'
+  sudo groupadd docker
 fi
 
 # Check if the user "ubuntu" is in the "docker" group
