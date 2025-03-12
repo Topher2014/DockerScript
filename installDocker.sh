@@ -1,3 +1,4 @@
+set -x
 # Set up Docker's apt repository in the following two steps:
 
 # 2. Add Docker's official GPG key:
