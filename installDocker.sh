@@ -1,7 +1,5 @@
+# Print the command that executes
 set -x
-# Set up Docker's apt repository in the following two steps:
-
-# 2. Add Docker's official GPG key:
 
 # Check if ca-certificates exists, if not, install it.
 if apt-cache show 'ca-certificates'
@@ -57,8 +55,6 @@ else
    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
    sudo tee /etc/apt/sources.list.d/docker.list && sudo apt update
 fi
-
-# Install the latest version
 
 # Check if the containerd.io package is in the apt-cache
 if apt-cache show 'containerd.io'
